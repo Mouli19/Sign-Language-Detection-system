@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Language Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="camera-panel" aria-label="Live sign language detector">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Live Detection</p>
+            <h1>Sign Language Detection</h1>
+          </div>
+          <div class="status-pill" id="connectionStatus">Idle</div>
+        </div>
+
+        <div class="stage">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div class="empty-state" id="emptyState">
+            <span>Camera preview will appear here</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="primary" id="startButton" type="button">Start Camera</button>
+          <button id="stopButton" type="button" disabled>Stop</button>
+        </div>
+      </section>
+
+      <aside class="inspector" aria-label="Prediction details">
+        <div class="prediction">
+          <p class="eyebrow">Current Sign</p>
+          <div class="label" id="predictionLabel">Waiting</div>
+          <div class="meter" aria-label="Confidence">
+            <span id="confidenceBar"></span>
+          </div>
+          <p class="confidence" id="confidenceText">Confidence 0%</p>
+        </div>
+
+        <div class="details">
+          <h2>Hand State</h2>
+          <div class="finger-grid" id="fingerGrid">
+            <span>Thumb</span><strong>--</strong>
+            <span>Index</span><strong>--</strong>
+            <span>Middle</span><strong>--</strong>
+            <span>Ring</span><strong>--</strong>
+            <span>Pinky</span><strong>--</strong>
+          </div>
+        </div>
+
+        <div class="details">
+          <h2>Supported Signs</h2>
+          <div class="sign-list" id="signList"></div>
+        </div>
+      </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
